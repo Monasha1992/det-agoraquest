@@ -10,7 +10,14 @@ namespace Utils
     {
         public Slider loadingBar;
         public TextMeshProUGUI progressText;
-        public float fadeDuration = 1f;
+
+        public Image fadeImage;
+        private const float FadeDuration = 2.0f;
+
+        private void Start()
+        {
+            LoadScene("Stage1");
+        }
 
         public void LoadScene(string sceneName)
         {
@@ -32,11 +39,31 @@ namespace Utils
 
                 if (operation.progress >= 0.9f)
                 {
-                    operation.allowSceneActivation = true;
+                    yield return new WaitForSeconds(1); // optional
+
+                    // Fade in to a black screen before activating the new scene
+                    StartCoroutine(FadeInBeforeActivation(operation));
+                    break;
                 }
 
                 yield return null;
             }
+        }
+
+        private IEnumerator FadeInBeforeActivation(AsyncOperation operation)
+        {
+            float t = 0;
+            while (t < FadeDuration)
+            {
+                t += Time.deltaTime;
+                var color = fadeImage.color;
+                color.a = t / FadeDuration;
+                fadeImage.color = color;
+                yield return null;
+            }
+
+            // Activate the new scene after fade-in completed
+            operation.allowSceneActivation = true;
         }
     }
 }

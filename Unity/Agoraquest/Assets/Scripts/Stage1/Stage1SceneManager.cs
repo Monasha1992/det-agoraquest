@@ -7,15 +7,17 @@ namespace Stage1
     public class Stage1SceneManager : MonoBehaviour
     {
         public Image fadePlane;
-        private const float FadeDuration = 5f;
+        private const float FadeDuration = 5.0f;
 
         private void Start()
         {
-            StartCoroutine(FadeIn());
+            StartCoroutine(FadeInPlane());
         }
 
-        private IEnumerator FadeIn()
+        private IEnumerator FadeInPlane()
         {
+            yield return new WaitForSeconds(1); 
+
             var t = FadeDuration;
             while (t > 0)
             {
