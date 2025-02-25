@@ -10,10 +10,10 @@ namespace Utils
         public Image fadeImage;
         public float fadeDuration = 1.0f;
 
-        private void Start()
-        {
-            StartCoroutine(FadeIn()); // Start with a fade-in effect
-        }
+        // private void Start()
+        // {
+        //     StartCoroutine(FadeIn()); // Start with a fade-in effect
+        // }
 
         public void LoadSceneWithFade(string sceneName)
         {

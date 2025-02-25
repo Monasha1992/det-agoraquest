@@ -10,6 +10,7 @@ namespace Utils
     {
         public Slider loadingBar;
         public TextMeshProUGUI progressText;
+        public float fadeDuration = 1f;
 
         public void LoadScene(string sceneName)
         {
@@ -31,9 +32,7 @@ namespace Utils
 
                 if (operation.progress >= 0.9f)
                 {
-                    progressText.text = "Press any key to continue...";
-                    if (Input.anyKeyDown)
-                        operation.allowSceneActivation = true;
+                    operation.allowSceneActivation = true;
                 }
 
                 yield return null;
