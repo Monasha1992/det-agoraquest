@@ -14,16 +14,16 @@ namespace Utils
         public Image fadeImage;
         private const float FadeDuration = 2.0f;
 
-        private void Start()
-        {
-            LoadScene("Stage1");
-        }
-
         public void LoadScene(string sceneName)
         {
             StartCoroutine(LoadSceneAsync(sceneName));
         }
 
+        /**
+         * Load the scene asynchronously
+         *
+         * showing the progress of loading of the new scene with a progress bar
+         */
         private IEnumerator LoadSceneAsync(string sceneName)
         {
             var operation = SceneManager.LoadSceneAsync(sceneName);
@@ -50,6 +50,12 @@ namespace Utils
             }
         }
 
+        /**
+         * Fade in to a black screen before activating the new scene
+         *
+         * will run for the duration of FadeDuration seconds
+         * by increasing the alpha value of the image in every frame
+         */
         private IEnumerator FadeInBeforeActivation(AsyncOperation operation)
         {
             float t = 0;

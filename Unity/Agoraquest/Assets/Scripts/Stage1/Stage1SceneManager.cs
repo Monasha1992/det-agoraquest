@@ -14,9 +14,16 @@ namespace Stage1
             StartCoroutine(FadeInPlane());
         }
 
+        /**
+         * for better page transition effect,
+         * black plane will be faded in before the scene is loaded
+         *
+         * will run for the duration of FadeDuration seconds
+         * by reducing the alpha value of the plane in every frame
+         */
         private IEnumerator FadeInPlane()
         {
-            yield return new WaitForSeconds(1); 
+            yield return new WaitForSeconds(1);
 
             var t = FadeDuration;
             while (t > 0)
