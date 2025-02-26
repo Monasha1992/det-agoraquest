@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Monasha1992/det-agoraquest">
-    <img src="public/images/logo.png" alt="Logo" height="200">
+    <img src="public/images/logo.webp" alt="Logo" height="200">
   </a>
 
 <h3 align="center">Agoraquest</h3>
@@ -138,7 +138,7 @@ flutter-app/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[product-logo]: public/images/logo.png
+[product-logo]: public/images/logo.webp
 
 [product-screenshot-2]: public/images/screenshot_2.png
 [product-screenshot-3]: public/images/screenshot_3.png
