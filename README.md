@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Monasha1992/det-agoraquest">
-    <img src="images/logo.webp" alt="Logo" height="200">
+    <img src="images/logo.webp" alt="Logo" width="400">
   </a>
 
 <h3 align="center">Agoraquest</h3>
