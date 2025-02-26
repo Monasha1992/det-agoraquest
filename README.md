@@ -66,8 +66,6 @@
 [![Sample_Screenshot][product-screenshot-5]](https://github.com/Monasha1992/det-agoraquest)
 [![Sample_Screenshot][product-screenshot-6]](https://github.com/Monasha1992/det-agoraquest)
 
-Bid for cars
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
