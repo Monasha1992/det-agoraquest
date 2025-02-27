@@ -14,6 +14,8 @@ namespace Utils
         public Image fadeImage;
         private const float FadeDuration = 2.0f;
 
+        public static SceneDataManager Instance;
+
         public void LoadScene(string sceneName)
         {
             StartCoroutine(LoadSceneAsync(sceneName));
