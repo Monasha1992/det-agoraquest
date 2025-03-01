@@ -8,13 +8,12 @@ namespace Utils
 {
     public class SceneLoadManager : MonoBehaviour
     {
+        public GameObject progressUI;
         public Slider loadingBar;
-        public TextMeshProUGUI progressText;
+        public TextMeshProUGUI progressValueText;
 
         public Image fadeImage;
-        private const float FadeDuration = 2.0f;
-
-        public static SceneDataManager Instance;
+        private const float FadeDuration = 1.0f;
 
         public void LoadScene(string sceneName)
         {
@@ -28,25 +27,33 @@ namespace Utils
          */
         private IEnumerator LoadSceneAsync(string sceneName)
         {
+            fadeImage.gameObject.SetActive(false); // Keep scene visible while loading
+
             var operation = SceneManager.LoadSceneAsync(sceneName);
             if (operation == null) yield break;
 
-            operation.allowSceneActivation = false;
+            operation.allowSceneActivation = false; // Prevent immediate activation
+
+
+            // yield return new WaitForSeconds(1); // Optional delay
+            fadeImage.gameObject.SetActive(true);
+            StartCoroutine(FadeInBeforeActivation(operation)); // Start a 5-second fade-in
+            // break;
 
             while (!operation.isDone)
             {
+                progressUI.SetActive(true);
                 var progress = Mathf.Clamp01(operation.progress / 0.9f);
                 loadingBar.value = progress;
-                progressText.text = "Loading... " + (progress * 100).ToString("F0") + "%";
+                progressValueText.text = progress * 100 + "%";
 
-                if (operation.progress >= 0.9f)
-                {
-                    yield return new WaitForSeconds(1); // optional
-
-                    // Fade in to a black screen before activating the new scene
-                    StartCoroutine(FadeInBeforeActivation(operation));
-                    break;
-                }
+                // if (operation.progress >= 0.9f)
+                // {
+                //     // yield return new WaitForSeconds(1); // Optional delay
+                //     fadeImage.gameObject.SetActive(true);
+                //     StartCoroutine(FadeInBeforeActivation(operation)); // Start a 5-second fade-in
+                //     break;
+                // }
 
                 yield return null;
             }
