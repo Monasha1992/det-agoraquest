@@ -11,6 +11,7 @@ namespace Stage1
 
         private void Start()
         {
+            fadePlane.gameObject.SetActive(true);
             StartCoroutine(FadeInPlane());
         }
 
