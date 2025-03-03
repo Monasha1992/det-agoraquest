@@ -222,6 +222,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c1e380462354e89937da595941e929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brokerAddress: broker.emqx.io
+  brokerPort: 1883
+  isEncrypted: 0
+  connectionDelay: 500
+  timeoutOnConnection: 30000
+  autoConnect: 0
+  mqttUserName: 
+  mqttPassword: 
+  heartRateValueText: {fileID: 6335187047262688543}
 --- !u!1 &16458235
 GameObject:
   m_ObjectHideFlags: 0
@@ -11193,6 +11202,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8535891453366993653, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_text
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535891453366993653, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_margin.w
+      value: 0.42865574
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535891453366993653, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_margin.x
+      value: 95.2526
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535891453366993653, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_margin.z
+      value: 95.419136
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946461150556080057, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946461150556080057, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9995386
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946461150556080057, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0015457864
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946461150556080057, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0024124833
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946461150556080057, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.030241312
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946461150556080057, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946461150556080057, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946461150556080057, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.169
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946461150556080057, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.282
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946461150556080057, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 3.466
+      objectReference: {fileID: 0}
     - target: {fileID: 9174008051592654184, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
       propertyPath: m_Name
       value: WristWatch
@@ -11202,6 +11267,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+--- !u!114 &6335187047262688543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8535891453366993653, guid: 74fae3b40d7ab4325b0fd733350eab42, type: 3}
+  m_PrefabInstance: {fileID: 6335187047262688542}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
