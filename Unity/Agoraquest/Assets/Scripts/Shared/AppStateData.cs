@@ -1,0 +1,15 @@
+using UnityEngine;
+
+namespace Shared
+{
+    public class AppStateData : MonoBehaviour
+    {
+        public static GameMode GameMode { get; set; }
+    }
+
+    public enum GameMode
+    {
+        Challenge,
+        Practice
+    }
+}
