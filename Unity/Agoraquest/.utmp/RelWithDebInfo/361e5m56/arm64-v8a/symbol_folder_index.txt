@@ -1,0 +1,1 @@
+C:\Users\fato3435\Documents\GitHub\det-agoraquest\Unity\Agoraquest\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\361e5m56\obj\arm64-v8a
