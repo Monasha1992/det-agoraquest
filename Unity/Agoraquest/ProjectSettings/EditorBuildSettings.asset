@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Stage1.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SafePlaceDemo.unity
     guid: ccb75531a2ef1bc43813709a3fb48a56
+  - enabled: 1
+    path: Assets/Scenes/Game/GameSelector.unity
+    guid: 4427ff4cc99b541a59f6ac46d2562ca7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: ff0b45c5d03f74066aaa8e04e3afe325, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

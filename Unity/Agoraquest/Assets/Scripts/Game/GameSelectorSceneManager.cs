@@ -12,10 +12,32 @@ namespace Game
     {
         public Button practiceButton;
         public Button challengeButton;
+        public GameObject welcomeContent;
+        public GameObject sceneSelectionContent;
 
         private void Start()
         {
             SetToPractice();
+        }
+
+        private void Update()
+        {
+            if (AppStateData.JourneyStarted && !sceneSelectionContent.activeSelf)
+            {
+                welcomeContent.SetActive(false);
+                sceneSelectionContent.SetActive(true);
+            }
+        }
+        
+        public void StartJourney()
+        {
+            AppStateData.JourneyStarted = true;
+        }
+
+        public void StartGame()
+        {
+            // TODO Load the game scene
+            Debug.Log("Starting game with mode: " + AppStateData.GameMode);
         }
 
         public void SetToPractice()
@@ -34,11 +56,6 @@ namespace Game
             practiceButton.colors = GetUnselectedColors();
         }
 
-        public void StartGame()
-        {
-            // TODO Load the game scene
-            Debug.Log("Starting game with mode: " + AppStateData.GameMode);
-        }
 
         private ColorBlock GetSelectedColors()
         {
