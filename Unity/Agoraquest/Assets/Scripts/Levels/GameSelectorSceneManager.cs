@@ -1,19 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Shared;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Game
+namespace Levels
 {
     public class GameSelectorSceneManager : MonoBehaviour
     {
         public Button practiceButton;
         public Button challengeButton;
         public GameObject welcomeContent;
+        public GameObject calmingSceneSelectionContent;
         public GameObject sceneSelectionContent;
+
+        private int _calmingSceneId = 1;
+        private int _stageId = 1;
 
         private void Start()
         {
@@ -22,22 +22,33 @@ namespace Game
 
         private void Update()
         {
-            if (AppStateData.JourneyStarted && !sceneSelectionContent.activeSelf)
+            if (AppStateData.JourneyStarted && welcomeContent.activeSelf)
             {
                 welcomeContent.SetActive(false);
+                calmingSceneSelectionContent.SetActive(true);
+                sceneSelectionContent.SetActive(false);
+            }
+            else if (AppStateData.CalmSceneSelected && calmingSceneSelectionContent.activeSelf)
+            {
+                welcomeContent.SetActive(false);
+                calmingSceneSelectionContent.SetActive(false);
                 sceneSelectionContent.SetActive(true);
             }
         }
-        
+
         public void StartJourney()
         {
             AppStateData.JourneyStarted = true;
         }
 
+        public void CalmingSceneSelected()
+        {
+            AppStateData.CalmSceneSelected = true;
+        }
+
         public void StartGame()
         {
-            // TODO Load the game scene
-            Debug.Log("Starting game with mode: " + AppStateData.GameMode);
+            AppNavigation.ToStage(_stageId);
         }
 
         public void SetToPractice()
@@ -54,6 +65,16 @@ namespace Game
 
             challengeButton.colors = GetSelectedColors();
             practiceButton.colors = GetUnselectedColors();
+        }
+
+        public void SetCalmingSceneId(int calmingSceneId)
+        {
+            _calmingSceneId = calmingSceneId;
+        }
+
+        public void SetStageId(int stageId)
+        {
+            _stageId = stageId;
         }
 
 
