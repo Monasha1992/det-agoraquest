@@ -4,6 +4,8 @@ namespace Levels
 {
     public class LevelOneSceneManagerScript : MonoBehaviour
     {
+        public GameObject[] humans;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
