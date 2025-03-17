@@ -14,6 +14,7 @@ namespace Shared
         private const string ExtremeHighColor = "#C00600";
         private const string LowColor = "#B40600";
         private const string ExtremeLowColor = "#C00600";
+        private int currentHeartRate;
 
         public TextMeshProUGUI heartRateValueText;
 
@@ -69,12 +70,18 @@ namespace Shared
             base.Start();
         }
 
+        public int GetCurrentHeartRate()
+        {
+            return currentHeartRate;
+        }
+
         protected override void DecodeMessage(string topic, byte[] message)
         {
             var msg = System.Text.Encoding.UTF8.GetString(message);
 
             if (int.TryParse(msg, out var heartRate))
             {
+                currentHeartRate = heartRate;
                 heartRateValueText.text = heartRate.ToString();
                 ColorUtility.TryParseHtmlString(heartRate switch
                 {
@@ -89,6 +96,7 @@ namespace Shared
             }
             else
             {
+                currentHeartRate = 0; // meaningless data
                 heartRateValueText.text = "!!!";
                 heartRateValueText.color = ColorUtility.TryParseHtmlString( DisabledColor, out var color)
                     ? color
