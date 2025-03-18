@@ -54,7 +54,7 @@ namespace Levels.Shared
         {
             // TODO: play message
             // animator.SetTrigger("Talk");
-            Debug.Log(message);
+            // Debug.Log(message);
             yield return StartCoroutine(GetSpeechAudio(message, isMale: true));
         }
 

@@ -653,6 +653,7 @@ GameObject:
   - component: {fileID: 4656108841609851677}
   - component: {fileID: 5059264918145717582}
   - component: {fileID: 7915611968695503175}
+  - component: {fileID: -7265977199003640469}
   m_Layer: 0
   m_Name: Female1
   m_TagString: Untagged
@@ -818,6 +819,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7265977199003640469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5792268764279677454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b030203b4e14339b87623e4f7f0c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5927548008005881295
 GameObject:
   m_ObjectHideFlags: 0

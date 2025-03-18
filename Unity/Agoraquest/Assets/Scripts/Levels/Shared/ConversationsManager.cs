@@ -49,8 +49,9 @@ namespace Levels.Shared
             // Generate a random point within the bounds
             var randomX = Random.Range(-18.76f, -6.76f);
             // var randomZ = Random.Range(10f, 5f); //10f - (walkingSurface?.size.z ?? 5f));
-            var randomZ = Random.Range(-4f, -16f + (walkingSurface?.size.z ?? -7f));
+            var randomZ = Random.Range(-3.5f, -3.5f - (walkingSurface?.size.z ?? 3f));
 
+            Debug.Log("z---"+randomZ);
             return new Vector3(randomX, transform.position.y, randomZ);
         }
 
@@ -73,7 +74,7 @@ namespace Levels.Shared
             {
                 var randomMember = conversation.ActiveMembers[Random.Range(0, conversation.ActiveMembers.Count)];
                 // randomMember.Speak(message.Message);
-                Debug.Log(message.Message);
+                //Debug.Log(message.Message);
 
                 conversation.IsTalking = true;
                 yield return StartCoroutine(randomMember.Speak(message.Message));
