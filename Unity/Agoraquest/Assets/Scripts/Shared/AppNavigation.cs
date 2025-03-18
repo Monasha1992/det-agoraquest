@@ -5,15 +5,14 @@ namespace Shared
 {
     public class AppNavigation : MonoBehaviour
     {
-        public static void ToStage(int stageId)
+        public static void ToStage(int stageSceneId)
         {
-            var sceneName = $"Stage{stageId}";
+            var sceneName = $"Level{stageSceneId}Scene";
             FindFirstObjectByType<SceneLoadManager>().LoadScene(sceneName);
         }
 
-        public static void ToCalmingScene()
+        public static void ToCalmingScene(int calmingSceneId)
         {
-            var calmingSceneId = 1;
             var sceneName = $"CalmingScene{calmingSceneId}";
             FindFirstObjectByType<SceneLoadManager>().LoadScene(sceneName);
         }

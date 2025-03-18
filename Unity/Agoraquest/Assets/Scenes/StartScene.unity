@@ -5810,7 +5810,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start Journey
+  m_text: Begin the Journey
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20693,7 +20693,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357293705}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cc5c234723e3a54d8dd09b131117743, type: 3}
   m_Name: 
@@ -22495,9 +22495,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1433907621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd567adc20bc48b4b574ac970bc387a, type: 3}
+  m_Script: {fileID: 11500000, guid: dd5f9a7cca97d4d74a2131b6aa280f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  progressUI: {fileID: 1098276642}
+  loadingBar: {fileID: 1315680215}
+  progressValueText: {fileID: 1870489044}
+  fadeImage: {fileID: 1383093728}
 --- !u!1 &1439123085
 GameObject:
   m_ObjectHideFlags: 0
@@ -29141,7 +29145,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894174660}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cc5c234723e3a54d8dd09b131117743, type: 3}
   m_Name: 
@@ -29833,7 +29837,7 @@ GameObject:
   - component: {fileID: 1951987395}
   - component: {fileID: 1951987394}
   m_Layer: 5
-  m_Name: StartJourneyButton
+  m_Name: BeginButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29857,7 +29861,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 180, y: 50}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1951987394
 MonoBehaviour:
