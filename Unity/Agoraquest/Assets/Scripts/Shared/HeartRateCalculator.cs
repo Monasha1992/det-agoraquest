@@ -7,16 +7,16 @@ namespace Shared
 {
     public class HeartRateCalculator : MonoBehaviour
     {
-        // 引用手腕监测管理器
+        // Call Wrist Monitoring Manager
         [SerializeField] private WristMonitorManager wristMonitor;
 
-        // 记录参数
+        // Parameters
         private List<int> heartRateSamples = new List<int>();
         private float averageHeartRate;
         private Coroutine recordingCoroutine;
         private bool isRecording = false;
 
-        // 场景触发配置
+        // Scene Trigger Configuration
         [SerializeField] private string targetSceneName = "Stage1";
         [SerializeField] private float recordingDuration = 60f;
 
@@ -50,7 +50,7 @@ namespace Shared
                 heartRateSamples.Clear();
                 isRecording = true;
                 recordingCoroutine = StartCoroutine(RecordingRoutine());
-                Debug.Log("开始记录心率数据...");
+                Debug.Log("Start recording heart rate data...");
             }
         }
 
@@ -64,7 +64,7 @@ namespace Shared
                 }
                 isRecording = false;
                 CalculateAverage();
-                Debug.Log($"记录完成，平均心率: {averageHeartRate:F1} BPM");
+                Debug.Log($"Recording complete, average heart rate: {averageHeartRate:F1} BPM");
             }
         }
 
@@ -75,9 +75,9 @@ namespace Shared
             {
                 timer += Time.deltaTime;
 
-                // 实时获取最新心率值
+                // get current heart rate
                 int currentHR = wristMonitor.GetCurrentHeartRate();
-                if (currentHR > 0) // 基本有效性验证
+                if (currentHR > 0) // validate
                 {
                     heartRateSamples.Add(currentHR);
                 }
@@ -110,15 +110,15 @@ namespace Shared
                 StartRecording();
                 if(isRecording == false)
                 {
-                    Debug.Log($"当前平均心率: {this.GetAverageHeartRate()} BPM");
-                    Debug.Log($"样本数量: {this.GetRawData().Count}");
+                    Debug.Log($"Current average heart rate: {this.GetAverageHeartRate()} BPM");
+                    Debug.Log($"sample size: {this.GetRawData().Count}");
                 }
                
             }
         }
 
 
-        // 供其他脚本访问数据
+        // For other scripts to access the data (if needed)
         public float GetAverageHeartRate() => averageHeartRate;
         public List<int> GetRawData() => new List<int>(heartRateSamples);
     }
