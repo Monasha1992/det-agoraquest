@@ -16,5 +16,10 @@ namespace Levels
             // challengeWatch.SetActive(!isLearning);
             learningWatch.SetActive(true);
         }
+
+        public void Panic()
+        {
+            Debug.Log("Panic");
+        }
     }
 }

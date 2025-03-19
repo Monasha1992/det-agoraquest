@@ -16,7 +16,8 @@ namespace Shared
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
-            if (panicButtonIndicator != null) StartCoroutine(AnimateActionButton());
+            // if (panicButtonIndicator != null) 
+                StartCoroutine(AnimateActionButton());
             if (spentTimeText != null) StartCoroutine(UpdateSpentTime());
         }
 
@@ -33,9 +34,9 @@ namespace Shared
                 if (!_isInPanic) break;
 
                 panicButtonIndicator.transform.localScale = new Vector3(
-                    isBig ? 0.02f : 0.022f,
-                    0.001f,
-                    isBig ? 0.02f : 0.022f
+                    isBig ? 9.5f : 10f,
+                    0.5f,
+                    isBig ? 9.5f : 10f
                 );
                 isBig = !isBig;
                 yield return new WaitForSeconds(0.2f);
