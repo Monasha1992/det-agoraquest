@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using M2MqttUnity;
+using Shared;
 using UnityEngine;
 using uPLibrary.Networking.M2Mqtt.Messages;
 
@@ -23,8 +24,7 @@ namespace CalmingScenes
 
         private int currentHeartRate;
 
-        [Header("MQTT Publish Setting")]
-        public string averageHeartRateTopic = "sensor/average_heart_rate";
+        [Header("MQTT Publish Setting")] public string averageHeartRateTopic = "sensor/average_heart_rate";
         //public TextMeshProUGUI heartRateValueText;
 
 
@@ -110,7 +110,6 @@ namespace CalmingScenes
             if (int.TryParse(msg, out var heartRate))
             {
                 currentHeartRate = heartRate;
-
             }
             else
             {
@@ -130,7 +129,7 @@ namespace CalmingScenes
         }
 
         private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene,
-                                  UnityEngine.SceneManagement.LoadSceneMode mode)
+            UnityEngine.SceneManagement.LoadSceneMode mode)
         {
             if (scene.name == targetSceneName)
             {
@@ -161,13 +160,18 @@ namespace CalmingScenes
                 {
                     StopCoroutine(recordingCoroutine);
                 }
+
                 isRecording = false;
                 CalculateAverage();
                 if (averageHeartRate != 0f)
                 {
                     SendAverageHeartRate(averageHeartRate);
                 }
+
                 Debug.Log($"Recording complete, average heart rate: {averageHeartRate:F1} BPM");
+
+                Disconnect();
+                AppNavigation.ToStage(1);
             }
         }
 
@@ -184,9 +188,11 @@ namespace CalmingScenes
                 {
                     heartRateSamples.Add(currentHR);
                 }
+
                 Debug.Log($"Current Heart Rate is: {currentHR}");
                 yield return null;
             }
+
             StopRecording();
         }
 
@@ -203,6 +209,7 @@ namespace CalmingScenes
             {
                 total += hr;
             }
+
             averageHeartRate = (float)total / heartRateSamples.Count;
         }
 
@@ -211,6 +218,4 @@ namespace CalmingScenes
             Disconnect();
         }
     }
-
 }
-

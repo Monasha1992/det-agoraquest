@@ -13,7 +13,8 @@ namespace CalmingScenes
         private void Start()
         {
             _wristHeartRateCalibrator = FindAnyObjectByType<WristHeartRateCalibrator>();
-            calibrationInfoDialog.SetActive(!AppStateData.HasHeartRateCalibrated);
+            // calibrationInfoDialog.SetActive(!AppStateData.HasHeartRateCalibrated);
+            _wristHeartRateCalibrator.StartRecording();
         }
 
         public void StartCalibration()
