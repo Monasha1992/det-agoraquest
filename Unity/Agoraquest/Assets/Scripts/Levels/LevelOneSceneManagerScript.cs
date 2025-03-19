@@ -15,10 +15,5 @@ namespace Levels
             learningWatch.SetActive(isLearning);
             challengeWatch.SetActive(!isLearning);
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
     }
 }

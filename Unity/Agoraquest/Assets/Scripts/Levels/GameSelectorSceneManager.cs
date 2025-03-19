@@ -1,3 +1,4 @@
+using System;
 using Shared;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ namespace Levels
         public GameObject calmingSceneSelectionContent;
         public GameObject sceneSelectionContent;
 
-        private int _calmingSceneId = 1;
+        private CalmingScene _calmingScene = CalmingScene.Forest;
         private int _stageId = 1;
 
         private void Start()
@@ -28,7 +29,7 @@ namespace Levels
                 calmingSceneSelectionContent.SetActive(true);
                 sceneSelectionContent.SetActive(false);
             }
-            else if (AppStateData.CalmSceneSelected && calmingSceneSelectionContent.activeSelf)
+            else if (AppStateData.SelectedCalmingScene != null && calmingSceneSelectionContent.activeSelf)
             {
                 welcomeContent.SetActive(false);
                 calmingSceneSelectionContent.SetActive(false);
@@ -41,14 +42,24 @@ namespace Levels
             AppStateData.JourneyStarted = true;
         }
 
-        public void CalmingSceneSelected()
+        public void CalmingSceneSelected(CalmingScene calmingScene)
         {
-            AppStateData.CalmSceneSelected = true;
+            AppStateData.SelectedCalmingScene = calmingScene;
         }
 
         public void StartGame()
         {
-            AppNavigation.ToStage(_stageId);
+            switch (AppStateData.GameMode)
+            {
+                case GameMode.Practice when AppStateData.SelectedCalmingScene != null:
+                    AppNavigation.ToCalmingScene(AppStateData.SelectedCalmingScene.Value);
+                    break;
+                case GameMode.Challenge:
+                    AppNavigation.ToStage(_stageId);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public void SetToPractice()
@@ -69,7 +80,13 @@ namespace Levels
 
         public void SetCalmingSceneId(int calmingSceneId)
         {
-            _calmingSceneId = calmingSceneId;
+            var calmingScene = CalmingScene.Forest;
+            if (calmingSceneId == 1)
+            {
+                calmingScene = CalmingScene.Forest;
+            }
+
+            _calmingScene = calmingScene;
         }
 
         public void SetStageId(int stageId)

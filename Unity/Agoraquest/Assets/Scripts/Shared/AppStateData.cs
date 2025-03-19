@@ -5,7 +5,7 @@ namespace Shared
     public class AppStateData : MonoBehaviour
     {
         public static bool JourneyStarted { get; set; }
-        public static bool CalmSceneSelected { get; set; }
+        public static CalmingScene? SelectedCalmingScene { get; set; }
         public static bool HasHeartRateCalibrated { get; set; }
         public static GameMode GameMode { get; set; }
     }
@@ -14,5 +14,10 @@ namespace Shared
     {
         Challenge,
         Practice
+    }
+
+    public enum CalmingScene
+    {
+        Forest,
     }
 }

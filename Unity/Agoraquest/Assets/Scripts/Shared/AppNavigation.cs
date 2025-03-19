@@ -11,9 +11,9 @@ namespace Shared
             FindFirstObjectByType<SceneLoadManager>().LoadScene(sceneName);
         }
 
-        public static void ToCalmingScene(int calmingSceneId)
+        public static void ToCalmingScene(CalmingScene calmingScene)
         {
-            var sceneName = $"CalmingScene{calmingSceneId}";
+            var sceneName = $"{calmingScene}CalmingScene";
             FindFirstObjectByType<SceneLoadManager>().LoadScene(sceneName);
         }
     }
