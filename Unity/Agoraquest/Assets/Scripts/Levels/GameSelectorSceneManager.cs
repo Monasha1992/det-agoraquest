@@ -42,24 +42,26 @@ namespace Levels
             AppStateData.JourneyStarted = true;
         }
 
-        public void CalmingSceneSelected(CalmingScene calmingScene)
+        public void ConfirmTheCalmingScene()
         {
-            AppStateData.SelectedCalmingScene = calmingScene;
+            AppStateData.SelectedCalmingScene = _calmingScene;
         }
 
         public void StartGame()
         {
-            switch (AppStateData.GameMode)
-            {
-                case GameMode.Practice when AppStateData.SelectedCalmingScene != null:
-                    AppNavigation.ToCalmingScene(AppStateData.SelectedCalmingScene.Value);
-                    break;
-                case GameMode.Challenge:
-                    AppNavigation.ToStage(_stageId);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            AppNavigation.ToCalmingScene(_calmingScene);
+            // AppNavigation.ToStage(_stageId);
+            // switch (AppStateData.GameMode)
+            // {
+            //     case GameMode.Practice when AppStateData.SelectedCalmingScene != null:
+            //         AppNavigation.ToCalmingScene(AppStateData.SelectedCalmingScene.Value);
+            //         break;
+            //     case GameMode.Challenge:
+            //         AppNavigation.ToStage(_stageId);
+            //         break;
+            //     default:
+            //         throw new ArgumentOutOfRangeException();
+            // }
         }
 
         public void SetToPractice()
@@ -78,16 +80,16 @@ namespace Levels
             practiceButton.colors = GetUnselectedColors();
         }
 
-        public void SetCalmingSceneId(int calmingSceneId)
-        {
-            var calmingScene = CalmingScene.Forest;
-            if (calmingSceneId == 1)
-            {
-                calmingScene = CalmingScene.Forest;
-            }
-
-            _calmingScene = calmingScene;
-        }
+        // public void SetCalmingSceneId(int calmingSceneId)
+        // {
+        //     var calmingScene = CalmingScene.Forest;
+        //     if (calmingSceneId == 1)
+        //     {
+        //         calmingScene = CalmingScene.Forest;
+        //     }
+        //
+        //     _calmingScene = calmingScene;
+        // }
 
         public void SetStageId(int stageId)
         {
