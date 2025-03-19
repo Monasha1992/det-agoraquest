@@ -7,10 +7,12 @@ namespace CalmingScenes
     {
         public AudioSource audioSource;
         public AudioClip[] audioClips;
+        public AudioClip backgroundClip;
 
         private void Start()
         {
             StartCoroutine(PlayAudioClipsSequentially());
+            //audioSource.PlayOneShot(backgroundClip, 0.3f);
         }
 
         private IEnumerator PlayAudioClipsSequentially()
