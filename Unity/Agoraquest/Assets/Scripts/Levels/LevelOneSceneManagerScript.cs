@@ -20,6 +20,9 @@ namespace Levels
         public void Panic()
         {
             Debug.Log("Panic");
+            //AppNavigation.ToCalmingScene(CalmingScene.Forest);
         }
+
+
     }
 }
