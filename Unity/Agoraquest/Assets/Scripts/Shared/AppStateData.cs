@@ -6,7 +6,7 @@ namespace Shared
     {
         public static bool JourneyStarted { get; set; }
         public static CalmingScene? SelectedCalmingScene { get; set; }
-        public static bool HasHeartRateCalibrated { get; set; }
+        public static bool HasHeartRateCalibrated { get; set; } = false;
         public static GameMode GameMode { get; set; }
     }
 
