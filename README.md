@@ -1,5 +1,9 @@
 # Agoraquest-A Virtual Odyssey to Vanquish Social Anxiety.
-<a href="file:///Users/minhui/Desktop/Agoraquest.jpg">Agoraquest</a>
+<!-- PROJECT LOGO -->
+<div align="center">
+   <a href="http://github.com/Monasha1992/det-agoraquest">
+      <img src="images/logo.webp" alt="Logo" width="400">
+   </a>
 
 
 
