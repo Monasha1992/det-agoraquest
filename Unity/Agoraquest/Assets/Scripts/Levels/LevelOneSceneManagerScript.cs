@@ -20,10 +20,8 @@ namespace Levels
         //Change scene when press panic button
         public void Panic()
         {
-            //Debug.Log("Panic");
+            Debug.Log("Panic");
             AppNavigation.ToCalmingScene(CalmingScene.Forest);
         }
-
-
     }
 }
