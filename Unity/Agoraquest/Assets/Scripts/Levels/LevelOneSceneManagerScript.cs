@@ -17,10 +17,11 @@ namespace Levels
             learningWatch.SetActive(true);
         }
 
+        //Change scene when press panic button
         public void Panic()
         {
-            Debug.Log("Panic");
-            //AppNavigation.ToCalmingScene(CalmingScene.Forest);
+            //Debug.Log("Panic");
+            AppNavigation.ToCalmingScene(CalmingScene.Forest);
         }
 
 

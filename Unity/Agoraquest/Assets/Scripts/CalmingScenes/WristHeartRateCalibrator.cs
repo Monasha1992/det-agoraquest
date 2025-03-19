@@ -171,7 +171,7 @@ namespace CalmingScenes
                 Debug.Log($"Recording complete, average heart rate: {averageHeartRate:F1} BPM");
 
                 Disconnect();
-                AppNavigation.ToStage(1);
+                AppNavigation.ToStage(1);               
             }
         }
 
@@ -213,9 +213,9 @@ namespace CalmingScenes
             averageHeartRate = (float)total / heartRateSamples.Count;
         }
 
-        private void OnDestroy()
-        {
-            Disconnect();
-        }
+        //private void OnDestroy()
+        //{
+        //    Disconnect();
+        //}
     }
 }
