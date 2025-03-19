@@ -11,9 +11,10 @@ namespace Levels
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
-            var isLearning = AppStateData.GameMode == GameMode.Practice;
-            learningWatch.SetActive(isLearning);
-            challengeWatch.SetActive(!isLearning);
+            // var isLearning = AppStateData.GameMode == GameMode.Practice;
+            // learningWatch.SetActive(isLearning);
+            // challengeWatch.SetActive(!isLearning);
+            learningWatch.SetActive(true);
         }
     }
 }
