@@ -25,7 +25,7 @@ namespace Levels.Shared
         {
             while (_mNavMeshSurface.size.z < 12f)
             {
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(20f);
 
                 // Increase the volume size's z-axis
                 var newSize = _mNavMeshSurface.size;

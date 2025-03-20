@@ -47,9 +47,9 @@ namespace Levels.Shared
         public Vector3 GetRandomPoint()
         {
             // Generate a random point within the bounds
-            var randomX = Random.Range(-18.76f, -6.76f);
+            var randomX = Random.Range(-6f, 6f);
             // var randomZ = Random.Range(10f, 5f); //10f - (walkingSurface?.size.z ?? 5f));
-            var randomZ = Random.Range(-3.5f, -3.5f - (walkingSurface?.size.z ?? 3f));
+            var randomZ = Random.Range(1.5f, 1.5f - (walkingSurface?.size.z ?? 3f));
 
             Debug.Log("z---"+randomZ);
             return new Vector3(randomX, transform.position.y, randomZ);
