@@ -7,6 +7,7 @@ namespace CalmingScenes
     {
         public AudioSource audioSource;
         public AudioClip[] audioClips;
+        public AudioClip calibrationAudio;
         public AudioClip backgroundClip;
 
         private void Start()
@@ -15,10 +16,26 @@ namespace CalmingScenes
             audioSource.PlayOneShot(backgroundClip, 0.3f);
         }
 
-        public void StartGuidance()
+        public void StartCalibration()
         {
             // stop the background music
             audioSource.Stop();
+            StartCoroutine(PlayCalibration());
+        }
+
+        private IEnumerator PlayCalibration()
+        {
+            
+                audioSource.clip = calibrationAudio;
+                audioSource.Play();
+            yield return new WaitForSeconds(calibrationAudio.length + 3);
+        
+    }
+
+        public void StartGuidance()
+        {
+            // stop the background music
+            //audioSource.Stop();
             StartCoroutine(PlayAudioClipsSequentially());
         }
 
