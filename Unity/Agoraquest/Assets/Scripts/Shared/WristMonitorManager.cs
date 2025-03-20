@@ -39,6 +39,9 @@ namespace Shared
         public TextMeshProUGUI challengeMaxHeartRateText;
         public TextMeshProUGUI challengeLevelText;
         public GameObject challengeDialog;
+        public GameObject challengeColorFlickerDialog;
+        public GameObject challengeGameStatusDialog;
+        public TextMeshProUGUI gameStatusText;
         private bool _isChallengeRunning;
         private int _challengeLevel = 1;
         private int _challengeMaxHeartRate = 100;
@@ -93,27 +96,34 @@ namespace Shared
         private void LateUpdate()
         {
             // check for fail
-            if (_isChallengeRunning && _challengeMaxHeartRate < _heartRateValue)
+            if (_isChallengeRunning)
             {
-                if (_lastChallengeFailedTime == null
-                   )
+                if (_challengeMaxHeartRate < _heartRateValue)
                 {
-                    _lastChallengeFailedTime = DateTime.Now;
-                    // TODO: show warning dialog
+                    if (_lastChallengeFailedTime == null
+                       )
+                    {
+                        _lastChallengeFailedTime = DateTime.Now;
+                        challengeColorFlickerDialog.SetActive(true);
+                    }
+                    // end the game if the player fails the challenge for more than 3 consecutive seconds
+                    else if ((DateTime.Now - _lastChallengeFailedTime.Value).TotalSeconds > 3)
+                    {
+                        _isChallengeRunning = false;
+                        _levelOneSceneManagerScript.EndGame();
+                        challengeColorFlickerDialog.SetActive(false);
+                        challengeGameStatusDialog.SetActive(true);
+                        gameStatusText.text = "You Lost!";
+                        gameStatusText.color = Color.red;
+                    }
                 }
 
-                // if the last challenge failed time is less than 1 second, clear it
-                else if ((DateTime.Now - _lastChallengeFailedTime.Value).TotalMilliseconds < 100)
+                // if the player fails the challenge for more than 1 second, clear the last failed time
+                else if (_lastChallengeFailedTime == null ||
+                         (DateTime.Now - _lastChallengeFailedTime.Value).TotalSeconds > 1)
                 {
-                    // TODO: clear warning dialog
                     _lastChallengeFailedTime = null;
-                }
-                else if ((DateTime.Now - _lastChallengeFailedTime.Value).TotalSeconds > 3)
-                {
-                    _isChallengeRunning = false;
-                    _levelOneSceneManagerScript.EndGame();
-                    // TODO: show lost dialog
-                    // TODO: clear warning dialog
+                    challengeColorFlickerDialog.SetActive(false);
                 }
             }
         }
@@ -128,7 +138,10 @@ namespace Shared
                     // Win
                     _isChallengeRunning = false;
                     _levelOneSceneManagerScript.EndGame();
-                    // TODO: show won dialog
+
+                    challengeGameStatusDialog.SetActive(true);
+                    gameStatusText.text = "You Won!";
+                    gameStatusText.color = Color.green;
                 }
                 else if (_elapsedTime > 300)
                 {
