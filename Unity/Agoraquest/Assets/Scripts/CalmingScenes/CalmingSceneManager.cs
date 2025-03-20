@@ -32,6 +32,7 @@ namespace CalmingScenes
         public void EndCalibration()
         {
             calibrationDoneDialog.SetActive(true);
+            AppStateData.HasHeartRateCalibrated = true;
             StartCoroutine(NavigateToNextScene());
         }
 

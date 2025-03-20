@@ -1,4 +1,5 @@
 using System.Collections;
+using Shared;
 using UnityEngine;
 
 namespace CalmingScenes
@@ -12,8 +13,14 @@ namespace CalmingScenes
 
         private void Start()
         {
-            // StartCoroutine(PlayAudioClipsSequentially());
-            audioSource.PlayOneShot(backgroundClip, 0.3f);
+            if (AppStateData.HasHeartRateCalibrated)
+            {
+                StartGuidance();
+            }
+            else
+            {
+                audioSource.PlayOneShot(backgroundClip, 0.3f);
+            }
         }
 
         public void StartCalibration()
@@ -25,12 +32,10 @@ namespace CalmingScenes
 
         private IEnumerator PlayCalibration()
         {
-            
-                audioSource.clip = calibrationAudio;
-                audioSource.Play();
+            audioSource.clip = calibrationAudio;
+            audioSource.Play();
             yield return new WaitForSeconds(calibrationAudio.length + 3);
-        
-    }
+        }
 
         public void StartGuidance()
         {
