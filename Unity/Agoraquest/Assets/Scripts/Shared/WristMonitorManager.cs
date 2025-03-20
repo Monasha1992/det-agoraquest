@@ -22,7 +22,7 @@ namespace Shared
         private float _heartRateValue;
 
         [Header("Heart Rate Thresholds")] public int lowThreshold = 65;
-        public int normalThreshold = 85;
+        public int normalThreshold = 72;
         public int highThreshold = 100;
         public int veryHighThreshold = 135;
 
@@ -263,44 +263,35 @@ namespace Shared
 
             if (int.TryParse(msg, out var heartRate))
             {
+                // if the heart rate is over the normal threshold, vibrate the wrist
+                var enableVibrate = heartRate < AppStateData.MinNormalHeartRateThreshold ||
+                                    heartRate > AppStateData.MaxNormalHeartRateThreshold;
+                Vibrate(enableVibrate);
+                // activate panic button
+                ActivatePanicButton(enableVibrate);
+
                 var heartRateValueText = heartRate.ToString();
                 practiceHeartRateValueText.text = heartRateValueText;
                 challengeHeartRateValueText.text = heartRateValueText;
                 _heartRateValue = heartRate;
-
-                // activate panic button
-                ActivatePanicButton(heartRate > normalThreshold);
-
-                // ColorUtility.TryParseHtmlString(heartRate switch
-                // {
-                //     < 0 => ExtremeLowColor,
-                //     < lowThreshold => LowColor,
-                //     < normalThreshold => NormalColor,
-                //     < highThreshold => HighColor,
-                //     < veryHighThreshold => VeryHighColor,
-                //     _ => ExtremeHighColor
-                // }, out var color);
 
                 Color heartRateValueTextColor;
                 if (heartRate < 0)
                 {
                     ColorUtility.TryParseHtmlString(ExtremeLowColor, out heartRateValueTextColor);
                 }
-                else if (heartRate < lowThreshold)
+                else if (heartRate < AppStateData.MinNormalHeartRateThreshold)
                 {
                     ColorUtility.TryParseHtmlString(LowColor, out heartRateValueTextColor);
                 }
-                else if (heartRate < normalThreshold)
+                else if (heartRate >= AppStateData.MinNormalHeartRateThreshold ||
+                         heartRate <= AppStateData.MaxNormalHeartRateThreshold)
                 {
                     ColorUtility.TryParseHtmlString(NormalColor, out heartRateValueTextColor);
                 }
-                else if (heartRate < highThreshold)
+                else if (heartRate > AppStateData.MaxNormalHeartRateThreshold)
                 {
                     ColorUtility.TryParseHtmlString(HighColor, out heartRateValueTextColor);
-                }
-                else if (heartRate < veryHighThreshold)
-                {
-                    ColorUtility.TryParseHtmlString(VeryHighColor, out heartRateValueTextColor);
                 }
                 else
                 {
@@ -327,6 +318,13 @@ namespace Shared
                 practiceHeartRateValueText.color = heartRateValueTextColor;
                 challengeHeartRateValueText.color = heartRateValueTextColor;
             }
+        }
+
+        private void Vibrate(bool isActivate)
+        {
+            client.Publish(AppStateData.MqttTopicVibration,
+                System.Text.Encoding.UTF8.GetBytes(isActivate ? "activate" : "deactivate"),
+                MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
         }
 
         private static void AddUiMessage(string msg, bool isError = false)
