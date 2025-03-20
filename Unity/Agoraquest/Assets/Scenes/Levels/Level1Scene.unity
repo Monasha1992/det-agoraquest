@@ -4463,7 +4463,7 @@ MonoBehaviour:
   requestScenePermissionOnStartup: 0
   requestRecordAudioPermissionOnStartup: 0
   _localDimming: 1
-  _trackingOriginType: 1
+  _trackingOriginType: 2
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1
@@ -4518,7 +4518,7 @@ Transform:
   m_GameObject: {fileID: 343630908}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0914, z: -7}
+  m_LocalPosition: {x: 4.72, y: 0, z: -8.012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20097,6 +20097,7 @@ MonoBehaviour:
   challengeHeartRateValueText: {fileID: 887728697}
   panicButtonIndicator: {fileID: 1194954978}
   panicTooltip: {fileID: 1016431227}
+  heartRateValue: 0
   lowThreshold: 65
   normalThreshold: 85
   highThreshold: 100
