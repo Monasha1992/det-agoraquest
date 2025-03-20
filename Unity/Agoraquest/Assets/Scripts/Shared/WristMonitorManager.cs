@@ -19,7 +19,7 @@ namespace Shared
 
         private bool _isInPanic;
         private float _elapsedTime;
-        private float _heartRateValue;
+        public float heartRateValue;
 
         [Header("Heart Rate Thresholds")] public int lowThreshold = 65;
         public int normalThreshold = 72;
@@ -98,7 +98,7 @@ namespace Shared
             // check for fail
             if (_isChallengeRunning)
             {
-                if (_challengeMaxHeartRate < _heartRateValue)
+                if (_challengeMaxHeartRate < heartRateValue)
                 {
                     if (_lastChallengeFailedTime == null
                        )
@@ -273,7 +273,7 @@ namespace Shared
                 var heartRateValueText = heartRate.ToString();
                 practiceHeartRateValueText.text = heartRateValueText;
                 challengeHeartRateValueText.text = heartRateValueText;
-                _heartRateValue = heartRate;
+                heartRateValue = heartRate;
 
                 Color heartRateValueTextColor;
                 if (heartRate < 0)
@@ -303,7 +303,7 @@ namespace Shared
             }
             else
             {
-                _heartRateValue = 0;
+                heartRateValue = 0;
                 // deactivate panic button
                 ActivatePanicButton(false);
 

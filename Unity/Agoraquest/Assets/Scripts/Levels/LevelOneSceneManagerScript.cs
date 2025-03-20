@@ -9,7 +9,6 @@ namespace Levels
     {
         private WristMonitorManager _wristMonitorManager;
         private NpcSpawner _npcSpawner;
-        private int _heartRate;
         public GameObject learningWatch;
         public GameObject challengeWatch;
         public bool isGameInProgress;
@@ -22,6 +21,11 @@ namespace Levels
             var isLearning = AppStateData.GameMode == GameMode.Practice;
             learningWatch.SetActive(isLearning);
             challengeWatch.SetActive(!isLearning);
+
+            if (isLearning)
+            {
+                _npcSpawner.StartSpawning();
+            }
         }
 
         public void StartGame()
@@ -39,12 +43,11 @@ namespace Levels
         //Change scene when press panic button
         public void GoToCalming()
         {
-            if (_heartRate > _wristMonitorManager.normalThreshold) AppNavigation.ToCalmingScene(CalmingScene.Forest);
-        }
-
-        public void UpdateHeartRate(int heartRate)
-        {
-            _heartRate = heartRate;
+            if (_wristMonitorManager.heartRateValue > AppStateData.MaxNormalHeartRateThreshold ||
+                _wristMonitorManager.heartRateValue < AppStateData.MinNormalHeartRateThreshold)
+            {
+                AppNavigation.ToCalmingScene(CalmingScene.Forest);
+            }
         }
     }
 }

@@ -50,8 +50,6 @@ namespace Levels.Shared
             var randomX = Random.Range(-6f, 6f);
             // var randomZ = Random.Range(10f, 5f); //10f - (walkingSurface?.size.z ?? 5f));
             var randomZ = Random.Range(1.5f, 1.5f - (walkingSurface?.size.z ?? 3f));
-
-            Debug.Log("z---"+randomZ);
             return new Vector3(randomX, transform.position.y, randomZ);
         }
 
