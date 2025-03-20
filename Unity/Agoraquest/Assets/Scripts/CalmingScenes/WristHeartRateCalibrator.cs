@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using M2MqttUnity;
-using Shared;
+using TMPro;
 using UnityEngine;
 using uPLibrary.Networking.M2Mqtt.Messages;
 
@@ -9,24 +9,35 @@ namespace CalmingScenes
 {
     public class WristHeartRateCalibrator : M2MqttUnityClient
     {
+        public TextMeshProUGUI heartRateValueText;
+        public TextMeshProUGUI averageHeartRateValueText;
+        public TextMeshProUGUI timeRemainingText;
+
+        private CalmingSceneManager _calmingSceneManager;
         // Call Wrist Monitoring Manager
         //[SerializeField] private WristMonitorManager wristMonitor;
 
         // Parameters
-        private List<int> heartRateSamples = new List<int>();
-        private float averageHeartRate;
-        private Coroutine recordingCoroutine;
-        private bool isRecording = false;
+        private readonly List<int> _heartRateSamples = new();
+        private float _averageHeartRate;
+        private Coroutine _recordingCoroutine;
+        private bool _isRecording;
 
         // Scene Trigger Configuration
         [SerializeField] private string targetSceneName = "ForestCalmingScene";
         [SerializeField] private float recordingDuration = 60f;
 
-        private int currentHeartRate;
+        private int _currentHeartRate;
 
         [Header("MQTT Publish Setting")] public string averageHeartRateTopic = "sensor/average_heart_rate";
         //public TextMeshProUGUI heartRateValueText;
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _calmingSceneManager = FindAnyObjectByType<CalmingSceneManager>();
+        }
 
         private static void AddUiMessage(string msg)
         {
@@ -78,7 +89,7 @@ namespace CalmingScenes
 
         public int GetCurrentHeartRate()
         {
-            return currentHeartRate;
+            return _currentHeartRate;
         }
 
         public void SendAverageHeartRate(float average)
@@ -87,10 +98,11 @@ namespace CalmingScenes
             {
                 try
                 {
-                    string payload = average.ToString("F1");
-                    byte[] message = System.Text.Encoding.UTF8.GetBytes(payload);
+                    var payload = average.ToString("F0");
+                    var message = System.Text.Encoding.UTF8.GetBytes(payload);
                     client.Publish(averageHeartRateTopic, message, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
                     AddUiMessage($"Average heart rate sent: {payload} BPM");
+                    averageHeartRateValueText.text = payload;
                 }
                 catch (System.Exception e)
                 {
@@ -109,87 +121,96 @@ namespace CalmingScenes
 
             if (int.TryParse(msg, out var heartRate))
             {
-                currentHeartRate = heartRate;
+                _currentHeartRate = heartRate;
             }
             else
             {
-                currentHeartRate = 0; // meaningless data
+                _currentHeartRate = 0; // meaningless data
             }
+
+            heartRateValueText.text = _currentHeartRate.ToString();
         }
 
 
-        void OnEnable()
-        {
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
-        }
+        // void OnEnable()
+        // {
+        //     UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        // }
+        //
+        // void OnDisable()
+        // {
+        //     UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+        // }
 
-        void OnDisable()
-        {
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-
-        private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene,
-            UnityEngine.SceneManagement.LoadSceneMode mode)
-        {
-            if (scene.name == targetSceneName)
-            {
-                StartRecording();
-            }
-            else
-            {
-                StopRecording();
-            }
-        }
+        // private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene,
+        //     UnityEngine.SceneManagement.LoadSceneMode mode)
+        // {
+        //     if (scene.name == targetSceneName)
+        //     {
+        //         StartRecording();
+        //     }
+        //     else
+        //     {
+        //         StopRecording();
+        //     }
+        // }
 
         public void StartRecording()
         {
-            if (!isRecording)
+            if (!_isRecording)
             {
-                heartRateSamples.Clear();
-                isRecording = true;
-                recordingCoroutine = StartCoroutine(RecordingRoutine());
+                _heartRateSamples.Clear();
+                _isRecording = true;
+                _recordingCoroutine = StartCoroutine(RecordingRoutine());
                 Debug.Log("Start recording heart rate data...");
             }
         }
 
         public void StopRecording()
         {
-            if (isRecording)
+            if (_isRecording)
             {
-                if (recordingCoroutine != null)
+                if (_recordingCoroutine != null)
                 {
-                    StopCoroutine(recordingCoroutine);
+                    StopCoroutine(_recordingCoroutine);
                 }
 
-                isRecording = false;
+                _isRecording = false;
                 CalculateAverage();
-                if (averageHeartRate != 0f)
+                if (_averageHeartRate != 0f)
                 {
-                    SendAverageHeartRate(averageHeartRate);
+                    SendAverageHeartRate(_averageHeartRate);
                 }
 
-                Debug.Log($"Recording complete, average heart rate: {averageHeartRate:F1} BPM");
+                Debug.Log($"Recording complete, average heart rate: {_averageHeartRate:F0} BPM");
 
                 Disconnect();
-                AppNavigation.ToStage(1);               
+                _calmingSceneManager.EndCalibration();
             }
         }
 
         private IEnumerator RecordingRoutine()
         {
-            float timer = 0f;
+            var timer = 0f;
             while (timer < recordingDuration)
             {
-                timer += Time.deltaTime;
+                Debug.Log("Recording..." + timer);
+                // timer += Time.deltaTime;
+                yield return new WaitForSeconds(1f);
+                timer += 1;
 
                 // get current heart rate
-                int currentHR = GetCurrentHeartRate();
-                if (currentHR > 0) // validate
+                var currentHr = GetCurrentHeartRate();
+                if (currentHr > 0) // validate
                 {
-                    heartRateSamples.Add(currentHR);
+                    _heartRateSamples.Add(currentHr);
                 }
 
-                Debug.Log($"Current Heart Rate is: {currentHR}");
+                Debug.Log($"Current Heart Rate is: {currentHr}");
+
+                CalculateAverage();
+                timeRemainingText.text = (recordingDuration - timer).ToString("F0") + " seconds";
+                averageHeartRateValueText.text = _averageHeartRate.ToString("F0");
                 yield return null;
             }
 
@@ -198,19 +219,19 @@ namespace CalmingScenes
 
         private void CalculateAverage()
         {
-            if (heartRateSamples.Count == 0)
+            if (_heartRateSamples.Count == 0)
             {
-                averageHeartRate = 0f;
+                _averageHeartRate = 0f;
                 return;
             }
 
-            int total = 0;
-            foreach (var hr in heartRateSamples)
+            var total = 0;
+            foreach (var hr in _heartRateSamples)
             {
                 total += hr;
             }
 
-            averageHeartRate = (float)total / heartRateSamples.Count;
+            _averageHeartRate = (float)total / _heartRateSamples.Count;
         }
 
         //private void OnDestroy()

@@ -11,8 +11,15 @@ namespace CalmingScenes
 
         private void Start()
         {
+            // StartCoroutine(PlayAudioClipsSequentially());
+            audioSource.PlayOneShot(backgroundClip, 0.3f);
+        }
+
+        public void StartGuidance()
+        {
+            // stop the background music
+            audioSource.Stop();
             StartCoroutine(PlayAudioClipsSequentially());
-            //audioSource.PlayOneShot(backgroundClip, 0.3f);
         }
 
         private IEnumerator PlayAudioClipsSequentially()
