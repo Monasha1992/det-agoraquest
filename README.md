@@ -21,14 +21,23 @@ At the beginning of our project, we did some literature research about VR educat
 
 Immersive experiences for social anixiety in the virtual world.
 A speciall virtual experience.
-Poke interaction:
+Poke interaction: to press the button 
+Ray interaction to choose different scene
+Grab interaction to interact with different objects
+Vibration feedback is to attach the hand in real life, while the visual vibration watch shows in the virtual world.
 
 ## Installation
 
 This section outlines the follow steps to set up your environment for developing VR applications.
 
 ## Usage
-
+To use Agoraquest and interact with its features, follow the guidelines below:
+1. Start Agoraquest on your VR headset. Make sure that the headset uses hand-tracking.
+2. Read instructions and use Ray's interaction to choose the options in the menu.
+3. Get ready by pressing the "Confirm" button to start the experience journey.
+4. You will be place in the "Calming Scene", after one minuter you will move to the main scene and interact with other objects
+5. When you are in main scene, you can see your heart rate with a virtual watch.
+6. 
 ## References
 
 ## Contributors
