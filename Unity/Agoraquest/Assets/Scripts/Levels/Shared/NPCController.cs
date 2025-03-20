@@ -48,6 +48,9 @@ namespace Levels.Shared
             }
 
             _conversationsManager.HasArrived(this);
+            
+            yield return new WaitForSeconds(0.75f);
+            _animator.Play($"idle_m_2");
         }
 
         public IEnumerator Speak(string message)
