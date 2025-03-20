@@ -107,7 +107,7 @@ namespace Shared
                         challengeColorFlickerDialog.SetActive(true);
                     }
                     // end the game if the player fails the challenge for more than 3 consecutive seconds
-                    else if ((DateTime.Now - _lastChallengeFailedTime.Value).TotalSeconds > 3)
+                    else if ((DateTime.Now - _lastChallengeFailedTime.Value).TotalSeconds > 10)
                     {
                         _isChallengeRunning = false;
                         _levelOneSceneManagerScript.EndGame();
