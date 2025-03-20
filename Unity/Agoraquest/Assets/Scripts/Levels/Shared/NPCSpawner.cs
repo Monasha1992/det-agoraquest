@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Levels.Shared
 {
@@ -42,9 +44,19 @@ namespace Levels.Shared
         public List<NpcController> activeNpcList = new();
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        private void Start()
+        // private void Start()
+        // {
+        //     StartCoroutine(SpawnNpc());
+        // }
+
+        public void StartSpawning()
         {
             StartCoroutine(SpawnNpc());
+        }
+
+        public void StopSpawning()
+        {
+            StopCoroutine(SpawnNpc());
         }
 
         private IEnumerator SpawnNpc()

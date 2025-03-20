@@ -245,6 +245,42 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &1564599381979359986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4194893428665190288}
+  m_Layer: 5
+  m_Name: PanicTooltip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4194893428665190288
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564599381979359986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2707049520894531362}
+  m_Father: {fileID: 6385640382168270463}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.18999863, y: -2.17}
+  m_SizeDelta: {x: 100, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2573534864547528876
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +313,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1287840104663242881}
-  - {fileID: 2707049520894531362}
+  - {fileID: 4194893428665190288}
   - {fileID: 5675622200683502658}
   m_Father: {fileID: 4165530503290086236}
   m_LocalEulerAnglesHint: {x: 0.019, y: -179.999, z: 0.464}
@@ -715,7 +751,7 @@ GameObject:
   - component: {fileID: 1644004985550365984}
   - component: {fileID: 6626163170662839888}
   m_Layer: 5
-  m_Name: PanicTooltip
+  m_Name: PanicTooltipText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -728,16 +764,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8288869183632593763}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -1.7831061e-11, y: 0.000000002793057, z: 0.0000000032596275, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6385640382168270463}
+  m_Father: {fileID: 4194893428665190288}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.19, y: -2.17}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1644004985550365984
@@ -1120,7 +1156,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 467455367554977434}
-  - component: {fileID: 4032080292193233747}
   m_Layer: 0
   m_Name: LearningWristWatch
   m_TagString: Untagged
@@ -1144,20 +1179,6 @@ Transform:
   - {fileID: 7972885297273832252}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
---- !u!114 &4032080292193233747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9174008051592654184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60bb52ce02cfa4f2da20d914252b1c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panicButtonIndicator: {fileID: 1393361124908057013}
-  spentTimeText: {fileID: 0}
 --- !u!1001 &7579515923074933975
 PrefabInstance:
   m_ObjectHideFlags: 0

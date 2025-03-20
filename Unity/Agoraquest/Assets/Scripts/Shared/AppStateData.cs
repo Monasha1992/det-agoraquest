@@ -4,6 +4,9 @@ namespace Shared
 {
     public class AppStateData : MonoBehaviour
     {
+        public const string MqttBroker = "broker.emqx.io";
+        public const string MqttTopicHeartRateSensor = "sensor/heart_rate";
+
         public static bool JourneyStarted { get; set; }
         public static CalmingScene? SelectedCalmingScene { get; set; }
         public static bool HasHeartRateCalibrated { get; set; } = false;
@@ -13,7 +16,7 @@ namespace Shared
     public enum GameMode
     {
         Challenge,
-        Practice
+        Practice,
     }
 
     public enum CalmingScene
