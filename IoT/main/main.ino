@@ -9,6 +9,7 @@ const int mqtt_port = 1883;
 const char* mqtt_topic = "esp32/control";  // MQTT Topic to subscribe
 
 #define LED_PIN 13  // GPIO2 for built-in LED (or change to your pin)
+int motorPin = 11;
 
 // MQTT and WiFi Clients
 WiFiClient espClient;
@@ -39,9 +40,13 @@ void callback(char* topic, byte* message, unsigned int length) {
   // Control LED based on message
   if (receivedMessage == "activate") {
     digitalWrite(LED_PIN, HIGH);
+    analogWrite(motorPin, 255);
     Serial.println("LED ON");
+    delay(500);
+    analogWrite(motorPin, 0);
   } else if (receivedMessage == "deactivate") {
     digitalWrite(LED_PIN, LOW);
+    analogWrite(motorPin, 0);
     Serial.println("LED OFF");
   }
 }
