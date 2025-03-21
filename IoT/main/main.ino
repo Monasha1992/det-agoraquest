@@ -2,14 +2,16 @@
 #include <PubSubClient.h>
 
 // WiFi and MQTT Configuration
-const char* ssid = "~mnsh-asus-2.4Ghz";       // Replace with your WiFi SSID
-const char* password = "ZXHNF660"; // Replace with your WiFi Password
+const char* ssid = "OnePlus";       // Replace with your WiFi SSID
+const char* password = "n67gk59t"; // Replace with your WiFi Password
 const char* mqtt_server = "broker.emqx.io"; // Replace with your MQTT broker address
 const int mqtt_port = 1883;
 const char* mqtt_topic = "esp32/control";  // MQTT Topic to subscribe
 
 #define LED_PIN 13  // GPIO2 for built-in LED (or change to your pin)
 int motorPin = 11;
+
+int motorPin = 8;
 
 // MQTT and WiFi Clients
 WiFiClient espClient;
@@ -48,6 +50,7 @@ void callback(char* topic, byte* message, unsigned int length) {
     digitalWrite(LED_PIN, LOW);
     analogWrite(motorPin, 0);
     Serial.println("LED OFF");
+    analogWrite(motorPin, 0);
   }
 }
 
